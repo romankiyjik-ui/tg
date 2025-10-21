@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лучшие лица недели</title>
+</head>
+<body>
+<!-- Подключаем шрифт Inter для точного совпадения -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  html, body,.t-records, .t-container, .t-page, .t-body, [id^="rec"] {
+    background: linear-gradient(145deg, #0e0e1b, #1b1b2e) !important;
+    background-color: #0e0e1b !important;
+  }
+
+  /* Если Tobiz оборачивает в iframe или wrapper */
+  body * {
+    background-color: transparent !important;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: #fff;
+  }
+
+  .custom-container {
+    background-color: #1b1b2e;
+    border: 1px solid #5a5aff;
+    border-radius: 20px;
+    padding: 25px 20px;
+    max-width: 400px;
+    width: 100%;
+    margin: 40px auto;
+    box-shadow: 0 0 20px rgba(90, 90, 255, 0.3);
+  }
+
+  /* Заголовки */
+  .custom-title {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    color: #fff;
+    animation: textHighlight 1.5s ease-in-out infinite;
+  }
+
+  /* Подсветка для текста */
+  @keyframes textHighlight {
+    0% {
+      color: #fff;
+      text-shadow: 0 0 10px #5a5aff, 0 0 20px #5a5aff, 0 0 30px #5a5aff;
+    }
+    50% {
+      color: #5a5aff;
+      text-shadow: 0 0 10px #3d42cc, 0 0 20px #3d42cc, 0 0 30px #3d42cc;
+    }
+    100% {
+      color: #fff;
+      text-shadow: 0 0 10px #5a5aff, 0 0 20px #5a5aff, 0 0 30px #5a5aff;
+    }
+  }
+
+  .custom-subtitle {
+    font-size: 14px;
+    color: #ccc;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Блок с красивым фоном и обводкой */
+  .custom-auth-box {
+    background-color: #3e3e58; /* Серый фон с оттенком */
+    padding: 12px 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 25px;
+    border-left: 4px solid #5a5aff;
+    box-shadow: 0px 4px 15px rgba(90, 90, 255, 0.3);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .custom-auth-box:hover {
+    background-color: #2e2e42; /* Цвет фона при наведении */
+    box-shadow: 0px 4px 20px rgba(90, 90, 255, 0.5); /* Эффект тени */
+  }
+
+  .custom-auth-box i {
+    font-size: 18px;
+    color: #5a5aff;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .custom-auth-box:hover i {
+    color: #3d42cc;
+    transform: rotate(15deg);
+  }
+
+  .custom-auth-box span {
+    font-weight: 600;
+    color: #ddd;
+  }
+
+  /* Изменение для центрирования аватарки */
+  .custom-user-card {
+    background-color: #2a2a40;
+    border-radius: 16px;
+    padding: 20px 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем аватарку */
+  }
+
+  .custom-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+    border: 2px solid #F5F5F5;
+  }
+
+  .custom-name {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 4px;
+    color: #fff; /* Добавил белый цвет текста */
+  }
+
+  .custom-votes {
+    font-size: 14px;
+    color: #9e3dff; /* Фиолетовый оттенок для голосов */
+    margin-bottom: 12px;
+  }
+
+  /* Стиль кнопок */
+  .custom-vote-btn {
+    background: linear-gradient(145deg, #5a5aff, #3d42cc);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    width: auto;
+    text-transform: uppercase;
+  }
+
+  /* Подсветка кнопки при наведении */
+  .custom-vote-btn:hover {
+    background: linear-gradient(145deg, #3d42cc, #5a5aff);
+    box-shadow: 0px 4px 15px rgba(90, 90, 255, 0.3);
+  }
+
+  .custom-vote-btn:focus {
+    outline: none;
+  }
+
+  @media (max-width: 480px) {
+    .custom-container {
+      max-width: 100%;
+      padding: 20px 15px;
+    }
+
+    .custom-vote-btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="custom-container">
+  <div class="custom-title">Лучшие лица недели✨</div>
+  <div class="custom-subtitle">Выбери, кто достоин попасть в ТОП!</div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-47.userapi.com/s/v1/ig2/suRaK-rJQAegL375TrXqvX_h2ItAWNZVxHML5rU4fFrcxv3X29qXguCMm9wVB98g393dxsnF_3QtGdThw3Pmp_KV.jpg?quality=95&as=32x48,48x72,72x108,108x162,160x240,240x360,360x540,480x720,540x810,640x960,720x1080,1080x1620,1280x1920,1440x2160&from=bu&cs=1080x0" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Артём</div>
+    <div class="custom-votes">Голосов: 59</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-80.userapi.com/s/v1/ig2/TdC4d9mEiUzD3GXV8PsW68OPIKwcJcBB91ey2GVNV7gUYHrLUjCnT0V73rLzImyelRv4HtsMoyn78tQDIrcaEM9Y.jpg?quality=95&crop=222,711,963,963&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=LaqpZIwDrHm6s9gAXcDtzosOzPpXVmjOXG_E0ddgmeY&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Михаил</div>
+    <div class="custom-votes">Голосов: 57</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-57.userapi.com/s/v1/ig2/AAuRIYXlmXzvm7Xfbt4CAPZDOYIFaV1ismy6kVYzXwht_8jxJLKen1G54zQbhK3D91kaToVB1nLt6xuhbrEEERiL.jpg?quality=95&crop=0,632,1706,1706&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=EkDBnyqTIMc7IVxOBw6Gvccz-sszIayDq1ZYC1v-QAY&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Иван</div>
+    <div class="custom-votes">Голосов: 53</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-45.userapi.com/s/v1/ig2/Ye-GAPJHv_FZ_GLHSU7mCQoANylyuz9TZPeqc6t1LWoKwALV-u45ML2ObNpkREqhR1X86jUPkvrpE9fJJegShYHN.jpg?quality=95&crop=479,429,2081,2081&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=oD3OqI_SaridKo59bpHUnRP_mHJO-MrAY9ZNkrT-BRc&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Егор</div>
+    <div class="custom-votes">Голосов: 50</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-22.userapi.com/s/v1/ig2/UcGSufjmV1-G8h0T4GzKfN_RZI-8zXKsQwriGrw0EBHgqmi2Qj5sspwZeE3G_7YmfpEttlgzSDiuyMKy8Xbs_zS1.jpg?quality=95&crop=97,97,831,831&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=07u0ETfkVN_cLs26i0ZQ_suOCMWuWp9auHgBhLCDohc&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Никита</div>
+    <div class="custom-votes">Голосов: 49</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-27.userapi.com/s/v1/ig2/ZN_xnfTY3UFX3X4QFG5AqO8YQvttXpalT1ZAM1zmpiKc1GV0ZNG8ncYdRuSKp4gWMdJ0pGsWqe-iaylCuXaaNRg-.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440,1280x1707,1440x1920,1920x2560&from=bu&cs=1080x0" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Максим</div>
+    <div class="custom-votes">Голосов: 47</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-16.userapi.com/s/v1/ig2/vzGPgcasG_HF82_wJfeZh1xzZ_528laBpKpirB6GS6coXwFvZrvh6Se1vpLmbt6YLpvDKWPSzO07V4rNi3QvQbJ5.jpg?quality=95&crop=528,369,803,803&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=IgndUoiKXvPX_sQaPKWkbZE1z6TAeb1T3X9s9C_f2Tg&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Максим</div>
+    <div class="custom-votes">Голосов: 46</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-86.userapi.com/s/v1/ig2/h8Q80xbQUoPxHbNPaZEebdpZG3O5pYVXmcd66n6lpkihEzmA8L2v3CO30Cp8Ch9tVxx9joZZdrLJwrmxWtdMS2Uu.jpg?quality=95&crop=1,369,864,864&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=p_TnIIK1GMm8i1cqGf3MaEXxmhGaf63ipxClKxYTUkU&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Илья</div>
+    <div class="custom-votes">Голосов: 43</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-87.userapi.com/s/v1/ig2/xG5y3g7sdAFC11Gpn3ieM1OCAKQaZ-aodWKwaVNJQFLqpHc5VBLdGKRD8vSmqbyyKQ6kh83SUMJr2Dzg2-qKwppW.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Никита</div>
+    <div class="custom-votes">Голосов: 41</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-29.userapi.com/s/v1/ig2/vbt3pbFqXjHP5Xhxc1Fx8Jb11oLmo4XpfFFl6uEs1a0ma73FUNsmKWyi-T07RbU4UXUiLe1MbhKRm24U3BVoa-wH.jpg?quality=95&crop=0,349,1280,1280&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280&ava=1&u=bQZIQj_zElQ0EXZntPsSWn1nkM5J3uqWpk6YnOrUY1s&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Андрей</div>
+    <div class="custom-votes">Голосов: 38</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-29.userapi.com/s/v1/ig2/srnuWCHD5-4X1SjadJ4uXto1V9DRaS8k_oB9rj2vTjZJ5WFlWWir48MzwUAdpAcfFwJ8Ctb8WCp5zmAZUSDaG2M1.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440,1280x1707,1440x1920,1920x2560&from=bu&cs=1080x0" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Александр</div>
+    <div class="custom-votes">Голосов: 36</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-67.userapi.com/s/v1/ig2/nhNzzwK-BewVyurBKVbgXlULoQZIRZeaVf-WPP3zgTtZV6C6vbpbrQ9Q7_8gMCfyKpyTAp7SpWOK0dpNKLkM8P_q.jpg?quality=95&crop=331,1095,848,848&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=uMcCuMIsOOOgXTrDX0_FNfiSK6H7pzpcsdD7oLX-96c&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Кристина</div>
+    <div class="custom-votes">Голосов: 35</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-2.userapi.com/s/v1/ig2/V2WvBP-Mn__KU9oBWoVk86TgbAaGZ6nGPO386fb7-QXFZuqWITSq2fTsyzL45zRhnbguhZQksYBTyfApnUygTK_-.jpg?quality=95&crop=104,171,743,743&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=go72ROIdleUofWhU66CB2QhytusVFKO0g52aSkuakHo&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Дамир</div>
+    <div class="custom-votes">Голосов: 33</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-73.userapi.com/s/v1/ig2/4w5QFsAp4MJ_YMRQaPUrkUXRL2vLjFObTx1hRfonOP6VJotB_8mft0Q_iFT0B_mQWxJrgDMh_DG3T94Tp_Slx8Sy.jpg?quality=95&crop=254,373,639,639&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540&ava=1&u=PIOW0MT0ITYUFPZEpkP2EU1Rt-PHLRATGpMMBYatHJI&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Иван</div>
+    <div class="custom-votes">Голосов: 30</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-79.userapi.com/s/v1/ig2/hBzubxp-Iw3_vDlWFlqokplxF-0eIVJXsd_7U22cmmItS901WdFdxNfeclx-nLeU-Up0imjGKd76fuO-qX93BYPu.jpg?quality=95&crop=2,299,1078,1078&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=PQz4G4SGeUkEvL-ClcZ-niTPmBSrBH4DwEVKZIMbctI&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Виктория</div>
+    <div class="custom-votes">Голосов: 28</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-2.userapi.com/s/v1/ig2/wz0B5ot3Dp9TEsQdxGjsolLz6xuKA4ezIWBqZ8U9WldeNphfkDOomWoH-KQGuspzX3gPCp3_ijX1QgstMlWrmVo1.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440,1280x1707,1440x1920,1920x2560&from=bu&cs=1920x0" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Виталий</div>
+    <div class="custom-votes">Голосов: 27</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun1-55.userapi.com/s/v1/ig2/wD6jLuOuFZa5iEU7dqt9pir1ur8e4ISZfnkQx0CT-EzPONeIkb9YjNmqZk-ZeKHUJd6eab9bfCX7BOnpIwvg2CEb.jpg?quality=95&crop=397,328,479,479&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&ava=1&u=DmIeyQzK4h4CUS9jp34Y2TXW8XC8WOuCdbvu1zj7y2I&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Никита</div>
+    <div class="custom-votes">Голосов: 24</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-19.userapi.com/s/v1/ig2/jAkFjZtAU8BLXWddNYDQuTIDCmxe5t10bH4pu3UMSkU-yBvktYUK86xa2T14eYWz_ceSr1J5ICUKZHLh34rhdedQ.jpg?quality=95&crop=169,49,413,413&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360&ava=1&u=Gfhp0SzJMPh4xfkVg0H49YAWohvXl2IYERVVbTrRMpw&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Стёпа</div>
+    <div class="custom-votes">Голосов: 20</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-64.userapi.com/s/v1/ig2/8miS4cqeGcikKKYijw1gtrV9UPjNdEIQ-Z_DbcU4dAzEg4t84tNilUubGmxwdrcaUGGbFy1pd6lnPpXRry4gV4yC.jpg?quality=95&crop=359,1125,1157,1157&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&ava=1&u=np1hj1K9ZRqAd6Ow7xtLYfo2PIqMWskPeGXNFk2Pbek&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Филиппс</div>
+    <div class="custom-votes">Голосов: 20</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-59.userapi.com/s/v1/ig2/ws2ZXeF83ACsVj17Eqg33LvECDP5EjU2Sn4P8pOqleDwM4j1jJhnQ-Smmsx5oYjlX8Yn_QAGtbTpOnuwApoIvv-t.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Роман</div>
+    <div class="custom-votes">Голосов: 19</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-68.userapi.com/s/v1/ig2/E6o7ZGzwOOh5vwHyCJiGSuE3LAUXXfi8gXpm4df_xH-Q0lf5d5In5F-DRFiBnRzpFYpK8mzqC8PQmG-jq4YAsvXd.jpg?quality=95&crop=319,585,1245,1245&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&ava=1&u=JKkjTIgyKkRq1mP2w7Li3TlUEcbxhgdloQZ30w9us5U&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Кристина</div>
+    <div class="custom-votes">Голосов: 16</div>
+    <a href="https://calltowr.com/d60f6f742ca83bf199f66461da1d35e97edc2c0d">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-23.userapi.com/s/v1/ig2/HueIykQqtrPvcpguuXt31EtWkUkJZmFoU3_V5PxlPTP1A18jKIsikX-TzMrg9VkV1l8jEP8KWgF8E_j_Rozc-B68.jpg?quality=95&crop=0,70,1920,1920&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280,1440x1440&ava=1&u=2J4gvS2ksThj0m9ThE94IowAxpBgtvqz8lcMgm6InYc&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Ева</div>
+    <div class="custom-votes">Голосов: 15</div>
+    <a href="https://battles-telegramm.sbs/tg-auth/16742169bcd87d45d6ecda7f746a8111d83bcc02">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-72.userapi.com/s/v1/ig2/5j60kg4t-4qEwQSWgcGWvdbpjKu2rVRiBbEo5JOv4nld6OXlTx6cTjbfYCAT1MLHRvjTvvmnbyMTjQdGcMgkmgCb.jpg?quality=95&crop=249,1133,1426,1426&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280&ava=1&u=pXcc-UK4R71OF4i4GAvkUtg2dQOWePlDzNCF2D0vUrs&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Руслана</div>
+    <div class="custom-votes">Голосов: 12</div>
+    <a href="https://battles-telegramm.sbs/tg-auth/16742169bcd87d45d6ecda7f746a8111d83bcc02">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun1-92.vkuserphoto.ru/s/v1/ig2/ZpxHVdXEFQQcoFx81BMqV9MCUkigaayYlbJI9VpdvsOhsEInwPVKIX-WsnV-Span9BnTy-HyoFWm4PGGnlR5NxtN.jpg?quality=95&crop=0,151,848,848&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720&ava=1&u=4l7C9x99MGTCh_PwFXEMC9Yzwqsxz8H4xD2HMitHZok&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Дарья</div>
+    <div class="custom-votes">Голосов: 11</div>
+    <a href="https://battles-telegramm.sbs/tg-auth/16742169bcd87d45d6ecda7f746a8111d83bcc02">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun1-30.userapi.com/s/v1/ig2/Fz9Hm0eB4VDLJ9zKPSmNn8eY7elp7m33kbXe_lY2f-xvzbUmcbekUggAM6XUj0mksdYVnpRqyczPHM-VVujR88H2.jpg?quality=95&crop=98,75,699,699&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640&ava=1&u=GNe8if3gIAaAmDogfkU_BRXMxjrRC7mHthj4z6EcbAI&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Бахтиёр</div>
+    <div class="custom-votes">Голосов: 9</div>
+    <a href="https://battles-telegramm.sbs/tg-auth/16742169bcd87d45d6ecda7f746a8111d83bcc02">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://sun9-20.userapi.com/s/v1/ig2/WtUuttu7tt7rrxqbEOoEf1FPdKz84iIYBPtV-PdUNRq2ngPI41VFWb6AUC4jk6IX1HxijACH2gDqIOxjXK99eipi.jpg?quality=95&crop=63,272,1268,1268&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080&ava=1&u=feD9zhu5-CZtmzdRrebvT6A56mlujJFpp5S6EVT2uQs&cs=200x200" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Эдуард</div>
+    <div class="custom-votes">Голосов: 7</div>
+    <a href="https://battles-telegramm.sbs/tg-auth/16742169bcd87d45d6ecda7f746a8111d83bcc02">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+  <div class="custom-user-card">
+    <img src="https://avatars.mds.yandex.net/i?id=1681242244f3c535970ccac31a8a44fa_l-15558911-images-thumbs&n=13" alt="Лиза" class="custom-avatar" />
+    <div class="custom-name">Рамиль</div>
+    <div class="custom-votes">Голосов: 7</div>
+    <a href="https://battles-telegramm.sbs/tg-auth/16742169bcd87d45d6ecda7f746a8111d83bcc02">
+      <button class="custom-vote-btn">Проголосовать ✨</button>
+    </a>
+  </div>
+
+</div>
+
+</body>
+</html>
